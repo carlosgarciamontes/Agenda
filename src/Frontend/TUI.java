@@ -53,7 +53,12 @@ public class TUI {
         System.out.println("6. Mostra tots els contactes");
         System.out.println("7. Tornar al menú principal");
         System.out.print("Selecciona una opció: ");
+        while (!scanner.hasNextInt()) {
+            System.out.println("Entrada no vàlida. Introdueixi un número.");
+            scanner.next();
+        }
         return llegirEnter();
+
     }
 
     private void crearContacte() {
@@ -74,11 +79,15 @@ public class TUI {
                 case 3: cercarPerCognoms(); break;
                 case 4: cercarPerTelefon(); break;
                 case 5: cercarPerEmail(); break;
-                case 6: ;mostrarLlistaContactes(); break;
+                case 6: mostrarTotsElsContactes(); break;
                 case 7: break;
                 default: System.out.println("Opció no vàlida");
             }
         } while(opcio != 6);
+    }
+    private void mostrarTotsElsContactes() {
+        List<Contacte> totsElsContactes = controlador.getTotsElsContactes();
+        mostrarLlistaContactes(totsElsContactes);
     }
 
     private void cercarPerId() {

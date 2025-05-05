@@ -1,5 +1,6 @@
 import Backend.Contacte;
 import Backend.Controlador;
+import Frontend.TUI;
 
 import java.io.InputStream;
 import java.util.List;
@@ -73,7 +74,8 @@ public class Main {
         System.out.println("3. Cercar per cognoms");
         System.out.println("4. Cercar per telèfon");
         System.out.println("5. Cercar per email");
-        System.out.println("6. Tornar al menú principal");
+        System.out.println("6. Mostrar tots els contactes");
+        System.out.println("7. Tornar al menú principal");
         System.out.print("Seleccioni una opció: ");
 
         while (!scanner.hasNextInt()) {
@@ -114,6 +116,9 @@ public class Main {
                     cercarPerEmail();
                     break;
                 case 6:
+                    mostrarTotsElsContactes();
+                    break;
+                case 7:
                     break;
                 default:
                     System.out.println("Opció no vàlida. Si us plau, seleccioni una opció del 1 al 6.");
@@ -155,6 +160,10 @@ public class Main {
         String email = scanner.nextLine();
         List<Contacte> resultats = controlador.cercaContactesPerEmail(email);
         mostrarLlistaContactes(resultats);
+    }
+    private void mostrarTotsElsContactes() {
+        List<Contacte> totsElsContactes = controlador.getTotsElsContactes();
+        mostrarLlistaContactes(totsElsContactes);
     }
 
     private void actualitzarContacte() {

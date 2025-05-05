@@ -63,4 +63,8 @@ public class Controlador {
                 .filter(c -> c.getEmail().equalsIgnoreCase(email))
                 .toList();
     }
+    public List<Contacte> getTotsElsContactes() {
+        return new ArrayList<>(contactes); // Retorna una copia de la llista per evitar modificacions externes
+    }
 }
+
