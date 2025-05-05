@@ -83,7 +83,7 @@ public class TUI {
                 case 7: break;
                 default: System.out.println("Opció no vàlida");
             }
-        } while(opcio != 6);
+        } while(opcio != 7);
     }
     private void mostrarTotsElsContactes() {
         List<Contacte> totsElsContactes = controlador.getTotsElsContactes();
