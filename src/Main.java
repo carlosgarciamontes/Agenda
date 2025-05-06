@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class Main {
     private InputStream inputStream;
-    private Scanner scanner;
+    private Scanner sc;
     private Controlador controlador;
 
     public Main(InputStream inputStream) {
         this.inputStream = inputStream;
-        this.scanner = new Scanner(inputStream);
+        this.sc = new Scanner(inputStream);
         this.controlador = new Controlador();
     }
 
@@ -48,7 +48,7 @@ public class Main {
             }
         } while(opcioPrincipal != 5);
 
-        scanner.close();
+        sc.close();
     }
 
     private int mostrarMenuPrincipal() {
@@ -60,11 +60,11 @@ public class Main {
         System.out.println("5. Sortir");
         System.out.print("Seleccioni una opció: ");
 
-        while (!scanner.hasNextInt()) {
+        while (!sc.hasNextInt()) {
             System.out.println("Entrada no vàlida. Introdueixi un número.");
-            scanner.next();
+            sc.next();
         }
-        return scanner.nextInt();
+        return sc.nextInt();
     }
 
     private int mostrarMenuCerca() {
@@ -78,15 +78,15 @@ public class Main {
         System.out.println("7. Tornar al menú principal");
         System.out.print("Seleccioni una opció: ");
 
-        while (!scanner.hasNextInt()) {
+        while (!sc.hasNextInt()) {
             System.out.println("Entrada no vàlida. Introdueixi un número.");
-            scanner.next();
+            sc.next();
         }
-        return scanner.nextInt();
+        return sc.nextInt();
     }
 
     private void crearContacte() {
-        scanner.nextLine(); // Netejar buffer
+        sc.nextLine(); // Netejar buffer
         String[] dades = demandaDadesContacte();
         Contacte nouContacte = controlador.nouContacte(dades[0], dades[1], dades[2], dades[3]);
         System.out.println("\nContacte creat amb èxit:");
@@ -97,7 +97,7 @@ public class Main {
         int opcioCerca;
         do {
             opcioCerca = mostrarMenuCerca();
-            scanner.nextLine(); // Netejar buffer
+            sc.nextLine(); // Netejar buffer
 
             switch(opcioCerca) {
                 case 1:
@@ -128,36 +128,36 @@ public class Main {
 
     private void cercarPerId() {
         System.out.print("Introdueixi l'ID del contacte: ");
-        int id = scanner.nextInt();
-        scanner.nextLine(); // Netejar buffer
+        int id = sc.nextInt();
+        sc.nextLine(); // Netejar buffer
         Contacte contacte = controlador.cercaContactesPerId(id);
         mostrarContacte(contacte);
     }
 
     private void cercarPerNom() {
         System.out.print("Introdueixi el nom: ");
-        String nom = scanner.nextLine();
+        String nom = sc.nextLine();
         List<Contacte> resultats = controlador.cercaContactesPerNom(nom);
         mostrarLlistaContactes(resultats);
     }
 
     private void cercarPerCognoms() {
         System.out.print("Introdueixi els cognoms: ");
-        String cognoms = scanner.nextLine();
+        String cognoms = sc.nextLine();
         List<Contacte> resultats = controlador.cercaContactesPerCognoms(cognoms);
         mostrarLlistaContactes(resultats);
     }
 
     private void cercarPerTelefon() {
         System.out.print("Introdueixi el telèfon: ");
-        String telefon = scanner.nextLine();
+        String telefon = sc.nextLine();
         List<Contacte> resultats = controlador.cercaContactesPerTelefon(telefon);
         mostrarLlistaContactes(resultats);
     }
 
     private void cercarPerEmail() {
         System.out.print("Introdueixi l'email: ");
-        String email = scanner.nextLine();
+        String email = sc.nextLine();
         List<Contacte> resultats = controlador.cercaContactesPerEmail(email);
         mostrarLlistaContactes(resultats);
     }
@@ -168,8 +168,8 @@ public class Main {
 
     private void actualitzarContacte() {
         System.out.print("Introdueixi l'ID del contacte a actualitzar: ");
-        int id = scanner.nextInt();
-        scanner.nextLine(); // Netejar buffer
+        int id = sc.nextInt();
+        sc.nextLine(); // Netejar buffer
 
         Contacte contacte = controlador.cercaContactesPerId(id);
         if (contacte == null) {
@@ -195,8 +195,8 @@ public class Main {
 
     private void esborrarContacte() {
         System.out.print("Introdueixi l'ID del contacte a esborrar: ");
-        int id = scanner.nextInt();
-        scanner.nextLine(); // Netejar buffer
+        int id = sc.nextInt();
+        sc.nextLine(); // Netejar buffer
         controlador.esborrarContacte(id);
         System.out.println("Contacte esborrat amb èxit (si existia).");
     }
@@ -204,26 +204,26 @@ public class Main {
     private String[] demandaDadesContacte() {
         System.out.println("\nIntrodueixi les dades del nou contacte:");
         System.out.print("Nom: ");
-        String nom = scanner.nextLine();
+        String nom = sc.nextLine();
         System.out.print("Cognoms: ");
-        String cognoms = scanner.nextLine();
+        String cognoms = sc.nextLine();
         System.out.print("Telèfon: ");
-        String telefon = scanner.nextLine();
+        String telefon = sc.nextLine();
         System.out.print("Email: ");
-        String email = scanner.nextLine();
+        String email = sc.nextLine();
         return new String[]{nom, cognoms, telefon, email};
     }
 
     private String[] demandaDadesActualitzarContacte() {
         System.out.println("\nIntrodueixi les noves dades (deixi en blanc per mantenir el valor actual):");
         System.out.print("Nom: ");
-        String nom = scanner.nextLine();
+        String nom = sc.nextLine();
         System.out.print("Cognoms: ");
-        String cognoms = scanner.nextLine();
+        String cognoms = sc.nextLine();
         System.out.print("Telèfon: ");
-        String telefon = scanner.nextLine();
+        String telefon = sc.nextLine();
         System.out.print("Email: ");
-        String email = scanner.nextLine();
+        String email = sc.nextLine();
         return new String[]{nom, cognoms, telefon, email};
     }
 

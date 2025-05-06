@@ -8,11 +8,11 @@ import java.util.Scanner;
 import java.util.List;
 
 public class TUI {
-    private Scanner scanner;
+    private Scanner sc;
     private Controlador controlador;
 
     public TUI(Controlador controlador) {
-        this.scanner = new Scanner(System.in);
+        this.sc = new Scanner(System.in);
         this.controlador = controlador;
     }
 
@@ -29,7 +29,7 @@ public class TUI {
                 default: System.out.println("Opció no vàlida");
             }
         } while(opcio != 5);
-        scanner.close();
+        sc.close();
     }
 
     private int mostrarMenuPrincipal() {
@@ -53,9 +53,9 @@ public class TUI {
         System.out.println("6. Mostra tots els contactes");
         System.out.println("7. Tornar al menú principal");
         System.out.print("Selecciona una opció: ");
-        while (!scanner.hasNextInt()) {
+        while (!sc.hasNextInt()) {
             System.out.println("Entrada no vàlida. Introdueixi un número.");
-            scanner.next();
+            sc.next();
         }
         return llegirEnter();
 
@@ -155,7 +155,7 @@ public class TUI {
         System.out.println("Contacte esborrat (si existia)");
     }
 
-    // Mètodes auxiliars
+
     private String[] demandaDadesContacte() {
         System.out.print("Nom: ");
         String nom = llegirString();
@@ -205,21 +205,21 @@ public class TUI {
     }
 
     private int llegirEnter() {
-        while (!scanner.hasNextInt()) {
+        while (!sc.hasNextInt()) {
             System.out.println("Has d'introduir un número enter");
-            scanner.next();
+            sc.next();
         }
-        int num = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salt de línea
+        int num = sc.nextInt();
+        sc.nextLine(); // Consumir el salt de línea
         return num;
     }
 
     private String llegirString() {
-        return scanner.nextLine().trim();
+        return sc.nextLine().trim();
     }
 
     private String llegirStringOpcio() {
-        String input = scanner.nextLine().trim();
+        String input = sc.nextLine().trim();
         return input.isEmpty() ? "" : input;
     }
 }
