@@ -1,5 +1,6 @@
-import Backend.Contacte;
+/* import Backend.Contacte;
 import Backend.Controlador;
+import Backend.FileController;
 import Frontend.TUI;
 
 import java.io.InputStream;
@@ -11,6 +12,7 @@ public class Main {
     private Scanner sc;
     private Controlador controlador;
 
+
     public Main(InputStream inputStream) {
         this.inputStream = inputStream;
         this.sc = new Scanner(inputStream);
@@ -20,6 +22,16 @@ public class Main {
     public static void main(String[] args) {
         Main aplicacio = new Main(System.in);
         aplicacio.iniciarAplicacio();
+        final String DATA_PATH = "data";
+
+        // 1. Crear el controlador de archivos
+        FileController controlador = new FileController(DATA_PATH);
+
+        // 2. Crear la interfaz de usuario terminal (TUI)
+        TUI interfazUsuario = new TUI(controlador);
+
+        // 3. Iniciar la aplicación
+        interfazUsuario.inici();
     }
 
     public void iniciarAplicacio() {
@@ -123,7 +135,7 @@ public class Main {
                 default:
                     System.out.println("Opció no vàlida. Si us plau, seleccioni una opció del 1 al 6.");
             }
-        } while(opcioCerca != 6);
+        } while(opcioCerca != 7);
     }
 
     private void cercarPerId() {
@@ -246,5 +258,24 @@ public class Main {
                 System.out.println("-------------------");
             }
         }
+    }
+} */
+import Backend.Contacte;
+import Backend.FileController;
+import Frontend.TUI;
+
+import java.io.InputStream;
+import java.util.Scanner;
+
+public class Main {
+    private static final String DATA_PATH = "data";  // Mover aquí la constante
+
+    public static void main(String[] args) {
+        // Usar FileController directamente (eliminar el Controlador normal)
+        FileController controlador = new FileController(DATA_PATH);
+        TUI interfazUsuario = new TUI(controlador);
+
+        // Iniciar aplicación
+        interfazUsuario.inici();
     }
 }
