@@ -151,8 +151,14 @@ public class TUI {
         System.out.println("\n--- ESBORRAR CONTACTE ---");
         System.out.print("Introdueix ID del contacte a esborrar: ");
         int id = llegirEnter();
-        controlador.esborrarContacte(id);
-        System.out.println("Contacte esborrat (si existia)");
+        Contacte actual = controlador.cercaContactesPerId(id);
+        if (actual == null) {
+            System.out.println("No s'ha trobat cap contacte amb aquest ID");
+        }
+        else {
+            controlador.esborrarContacte(id);
+            System.out.println("Contacte esborrat amb èxit");
+        }
     }
 
 

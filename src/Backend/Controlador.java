@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controlador {
-    private List<Contacte> contactes;
+    private final List<Contacte> contactes;
     private int lastContactId;
 
     public Controlador() {
