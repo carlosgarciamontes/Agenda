@@ -1,4 +1,4 @@
-package Backend;
+/*package Backend;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,4 +67,89 @@ public class Controlador {
         return new ArrayList<>(contactes); // Retorna una copia de la llista per evitar modificacions externes
     }
 }
+
+ */
+
+package Backend;
+
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+
+
+public class Controlador {
+    private final HashMap<Integer, Contacte> contactes;
+    private int lastContactId;
+
+
+    public Controlador() {
+        this.contactes = new HashMap<>();
+        this.lastContactId = 0;
+    }
+
+
+    public Contacte nouContacte(String nom, String cognoms, String telefon, String email) {
+        Contacte nou = new Contacte(++lastContactId, nom, cognoms, telefon, email);
+        contactes.put(nou.getId(), nou);
+        return nou;
+    }
+
+
+    public Contacte actualitzarContacte(int id, String nom, String cognoms, String telefon, String email) {
+        Contacte c = contactes.get(id);
+        if (c != null) {
+            if (nom != null) c.setNom(nom);
+            if (cognoms != null) c.setCognoms(cognoms);
+            if (telefon != null) c.setTelefon(telefon);
+            if (email != null) c.setEmail(email);
+        }
+        return c;
+    }
+
+
+    public void esborrarContacte(int id) {
+        contactes.remove(id);
+    }
+
+
+    public Contacte cercaContactesPerId(int id) {
+        return contactes.get(id);
+    }
+
+
+    public List<Contacte> cercaContactesPerNom(String nom) {
+        return contactes.values().stream()
+                .filter(c -> c.getNom().equalsIgnoreCase(nom))
+                .toList();
+    }
+
+
+    public List<Contacte> cercaContactesPerCognoms(String cognoms) {
+        return contactes.values().stream()
+                .filter(c -> c.getCognoms().equalsIgnoreCase(cognoms))
+                .toList();
+    }
+
+
+    public List<Contacte> cercaContactesPerTelefon(String telefon) {
+        return contactes.values().stream()
+                .filter(c -> c.getTelefon().equals(telefon))
+                .toList();
+    }
+
+
+    public List<Contacte> cercaContactesPerEmail(String email) {
+        return contactes.values().stream()
+                .filter(c -> c.getEmail().equalsIgnoreCase(email))
+                .toList();
+    }
+
+
+    public List<Contacte> getTotsElsContactes() {
+        return new ArrayList<>(contactes.values());
+    }
+}
+
+
 
