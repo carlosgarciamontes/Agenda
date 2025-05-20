@@ -1,4 +1,4 @@
-/* import Backend.Contacte;
+package main.Frontend;/* import Backend.Contacte;
 import Backend.Controlador;
 import Backend.FileController;
 import Frontend.TUI;
@@ -261,21 +261,34 @@ public class Main {
     }
 } */
 import Backend.Contacte;
-import Backend.FileController;
+import Backend.DataBaseController;
+//import Backend.FileController;
 import Frontend.TUI;
 
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class Main {
+/*public class Main {
     private static final String DATA_PATH = "data";  // Mover aquí la constante
 
     public static void main(String[] args) {
         // Usar FileController directamente (eliminar el Controlador normal)
-        FileController controlador = new FileController(DATA_PATH);
+        DataBaseController controlador = new DataBaseController(DATA_PATH);
         TUI interfazUsuario = new TUI(controlador);
 
         // Iniciar aplicación
         interfazUsuario.inici();
+    }
+}
+ */
+public class Main {
+    public static void main(String[] args) {
+        try (DataBaseController controlador = new DataBaseController()) {
+            TUI interfazUsuario = new TUI(controlador);
+            interfazUsuario.inici();
+        } catch (Exception e) {
+            System.err.println("Error en la aplicación: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

@@ -1,4 +1,4 @@
-package Backend;
+/*package Backend;
 
 import Backend.Contacte;
 import Backend.Controlador;
@@ -8,7 +8,7 @@ import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileController extends Controlador {
+public class FileController implements Controlador {
     private final File dataFolder;
     private final File contactFolder;
 
@@ -91,3 +91,4 @@ public class FileController extends Controlador {
         }
     }
 }
+*/

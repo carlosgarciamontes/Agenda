@@ -206,7 +206,7 @@ public class TUI {
             System.out.println("No s'han trobat contactes");
         } else {
             System.out.println("\nContactes trobats:");
-            contactes.forEach(c -> System.out.println(c + "-----"));
+            contactes.forEach(c -> System.out.println(c + "\n---------------------"));
         }
     }
 
@@ -221,11 +221,11 @@ public class TUI {
     }
 
     private String llegirString() {
-        return sc.nextLine().trim();
+        return sc.nextLine().trim().toLowerCase();
     }
 
     private String llegirStringOpcio() {
-        String input = sc.nextLine().trim();
+        String input = sc.nextLine().trim().toLowerCase();
         return input.isEmpty() ? "" : input;
     }
 }
