@@ -1,4 +1,4 @@
-package main.Frontend;/* import Backend.Contacte;
+/* import Backend.Contacte;
 import Backend.Controlador;
 import Backend.FileController;
 import Frontend.TUI;
@@ -263,6 +263,7 @@ public class Main {
 import Backend.Contacte;
 import Backend.DataBaseController;
 //import Backend.FileController;
+import Frontend.GUI;
 import Frontend.TUI;
 
 import java.io.InputStream;
@@ -283,12 +284,6 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        try (DataBaseController controlador = new DataBaseController()) {
-            TUI interfazUsuario = new TUI(controlador);
-            interfazUsuario.inici();
-        } catch (Exception e) {
-            System.err.println("Error en la aplicación: " + e.getMessage());
-            e.printStackTrace();
-        }
+        GUI gui = new GUI();
     }
 }
