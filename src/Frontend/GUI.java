@@ -129,7 +129,7 @@ public class GUI {
     private void searchAll(){
         this.model.setRowCount(0);
 
-        List<Contacte> cs = this.ctrl.getContactes();
+        List<Contacte> cs = this.ctrl.getTotsElsContactes();
         cs.forEach(this::addRow);
     }
 
